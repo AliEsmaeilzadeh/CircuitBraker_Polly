@@ -46,5 +46,27 @@ namespace CircuitBreaker.Server.Controllers
 
         }
 
+
+        [HttpGet]
+        public IActionResult Three()
+        {
+            counter += 1;
+            if (counter % 3 == 0)
+            {
+                return Ok(new Message
+                {
+                    Id = counter,
+                    Text = "درخواست در دفعات ضریب 3 با موفقیت انجام شد"
+                });
+            }
+            return BadRequest(new Message
+            {
+                Id = counter,
+                Text = "به علت ضریب 3 نبودن شماره درخواست عملیات ناموفق بود"
+            });
+
+        }
+
+
     }
 }
